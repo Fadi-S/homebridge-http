@@ -377,8 +377,6 @@ HttpAccessory.prototype = {
         }
     },
     compareStates: function (customStatus, stateData) {
-        this.log("Custom Status", customStatus);
-        this.log("State Data", stateData);
         for (var param in customStatus) {
             if (stateData.hasOwnProperty(param) && typeof stateData[param] === 'object' && !Array.isArray(stateData[param]) && stateData[param] !== null) {
                 if (! this.compareStates(customStatus[param], stateData[param])) {
@@ -392,7 +390,6 @@ HttpAccessory.prototype = {
                 return false;
             }
         }
-        this.log("True");
         // that.log("Equal", objectsEqual);
         return true;
     }

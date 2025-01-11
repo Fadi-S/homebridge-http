@@ -142,7 +142,7 @@ HttpAccessory.prototype = {
     httpRequest: function (url, body, method, username, password, sendimmediately, callback) {
         request({
                 url: url,
-                body: body,
+                body: body || "",
                 method: method,
                 rejectUnauthorized: false,
                 auth: {

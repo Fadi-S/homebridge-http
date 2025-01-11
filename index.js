@@ -377,15 +377,19 @@ HttpAccessory.prototype = {
         }
     },
     compareStates: function (customStatus, stateData) {
-        var objectsEqual = true;
         for (var param in customStatus) {
+            if (stateData.hasOwnProperty(param) && typeof stateData[param] === 'object' && !Array.isArray(stateData[param]) && stateData[param] !== null) {
+                if (! this.compareStates(customStatus[param], stateData[param])) {
+                    return false;
+                }
+            }
+
             if (!stateData.hasOwnProperty(param) || customStatus[param] !== stateData[param]) {
-                objectsEqual = false;
-                break;
+                return false;
             }
         }
         // that.log("Equal", objectsEqual);
-        return objectsEqual;
+        return true;
     }
 
 };

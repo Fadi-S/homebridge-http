@@ -13,6 +13,8 @@ module.exports = function (homebridge) {
 function HttpAccessory(log, config) {
     this.log = log;
 
+    this.log("Testing");
+
     // url info
     this.on_url = config["on_url"];
     this.on_body = config["on_body"];

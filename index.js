@@ -390,6 +390,7 @@ HttpAccessory.prototype = {
                 return false;
             }
         }
+        this.log("True");
         // that.log("Equal", objectsEqual);
         return true;
     }

@@ -21,6 +21,7 @@ function HttpAccessory(log, config) {
     this.status_url = config["status_url"];
     this.status_on = config["status_on"];
     this.status_off = config["status_off"];
+    this.status_body = config["status_body"];
     this.brightness_url = config["brightness_url"];
     this.brightnesslvl_url = config["brightnesslvl_url"];
     this.http_method = config["http_method"] || "GET";
@@ -44,8 +45,13 @@ function HttpAccessory(log, config) {
     // Status Polling, if you want to add additional services that don't use switch handling you can add something like this || (this.service=="Smoke" || this.service=="Motion"))
     if (this.status_url && this.switchHandling === "realtime") {
         var powerurl = this.status_url;
+
+        var status_body = this.status_body;
+        var http_method = this.http_method;
         var statusemitter = pollingtoevent(function (done) {
-            that.httpRequest(powerurl, "", "GET", that.username, that.password, that.sendimmediately, function (error, response, body) {
+
+
+            that.httpRequest(powerurl, status_body, http_method, that.username, that.password, that.sendimmediately, function (error, response, body) {
                 if (error) {
                     that.log("HTTP get power function failed: %s", error.message);
                     try {
@@ -199,7 +205,10 @@ HttpAccessory.prototype = {
         var url = this.status_url;
         this.log("Getting power state");
 
-        this.httpRequest(url, "", "GET", this.username, this.password, this.sendimmediately, function (error, response, responseBody) {
+        var status_body = this.status_body;
+        var http_method = this.http_method;
+
+        this.httpRequest(url, status_body, http_method, this.username, this.password, this.sendimmediately, function (error, response, responseBody) {
             if (error) {
                 this.log("HTTP get power function failed: %s", error.message);
                 callback(error);

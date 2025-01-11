@@ -21,7 +21,7 @@ function HttpAccessory(log, config) {
     this.status_url = config["status_url"];
     this.status_on = config["status_on"];
     this.status_off = config["status_off"];
-    this.status_body = config["status_body"] ?? "";
+    this.status_body = config["status_body"] || "";
     this.brightness_url = config["brightness_url"];
     this.brightnesslvl_url = config["brightnesslvl_url"];
     this.http_method = config["http_method"] || "GET";

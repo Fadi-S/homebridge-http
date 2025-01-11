@@ -13,8 +13,6 @@ module.exports = function (homebridge) {
 function HttpAccessory(log, config) {
     this.log = log;
 
-    this.log("Testing");
-
     // url info
     this.on_url = config["on_url"];
     this.on_body = config["on_body"];
@@ -144,7 +142,7 @@ HttpAccessory.prototype = {
     httpRequest: function (url, body, method, username, password, sendimmediately, callback) {
         request({
                 url: url,
-                body: body || "",
+                body: JSON.stringify(body || ""),
                 method: method,
                 rejectUnauthorized: false,
                 auth: {
@@ -205,9 +203,11 @@ HttpAccessory.prototype = {
         }
 
         var url = this.status_url;
+        var status_body = this.status_body;
+        var http_method = this.http_method;
         this.log("Getting power state");
 
-        this.httpRequest(url, this.status_body, this.http_method, this.username, this.password, this.sendimmediately, function (error, response, responseBody) {
+        this.httpRequest(url, status_body, http_method, this.username, this.password, this.sendimmediately, function (error, response, responseBody) {
             if (error) {
                 this.log("HTTP get power function failed: %s", error.message);
                 callback(error);

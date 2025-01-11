@@ -384,6 +384,8 @@ HttpAccessory.prototype = {
                 if (! this.compareStates(customStatus[param], stateData[param])) {
                     return false;
                 }
+
+                continue;
             }
 
             if (!stateData.hasOwnProperty(param) || customStatus[param] !== stateData[param]) {

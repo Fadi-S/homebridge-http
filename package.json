@@ -1,6 +1,6 @@
 {
-  "name": "homebridge-http",
-  "version": "0.1.0",
+  "name": "homebridge-http-custom",
+  "version": "0.1.1",
   "description": "http(s) plugin for Homebridge: https://github.com/nfarina/homebridge",
   "license": "ISC",
   "keywords": [
@@ -15,11 +15,12 @@
   },
   "contributors":[
   { "name" : "NovaGL"},
-  { "name" : "David Parry"}
-  ], 
+  { "name" : "David Parry"},
+  { "name" : "Fadi Sarwat"}
+  ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/rudders/homebridge-http.git"
+    "url": "git://github.com/Fadi-s/homebridge-http.git"
   },
   "dependencies": {
     "request": "^2.65.0",
